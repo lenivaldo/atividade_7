@@ -60,7 +60,7 @@ const App = () => {
         }
         placeholder='DD/MM/YYYY' />
 
-      <Text style={styles.texto}>Telefone:</Text>
+      <Text style={styles.texto}>Alterando envio:</Text>
       <TextInputMask style={styles.entradaTexto}
 
         placeholder='(XX) XXXXX-XXXX'
