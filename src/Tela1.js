@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, ImageBackground, StyleSheet, F
 
 import { TextInputMask } from 'react-native-masked-text';
 
-import { useNavigation } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
 import axios from 'axios';
 
@@ -19,6 +19,7 @@ const Tela1 = () => {
     const [nascimento, setNascimento] = useState('');
     const [telefone, setTelefone] = useState('');
     const [email, setEmail] = useState('');
+    const [id, setId] = useState('');
 
     const [cliente, setCliente] = useState([]);
 
@@ -26,7 +27,7 @@ const Tela1 = () => {
         axios.get('http://localhost:3000/cliente')
             .then((req) => setCliente(req.data))
             .catch((erro) => console.log(erro));
-    }, [])
+    }, [route.params?.user])
 
 
 
@@ -37,7 +38,8 @@ const Tela1 = () => {
             cep: cep,
             nascimento: nascimento,
             telefone: telefone,
-            email: email
+            email: email,
+            id: id
         }).then((data) => {
 
             const temp = [cliente, data.data];
@@ -62,6 +64,7 @@ const Tela1 = () => {
     }
 
     const navigation = useNavigation();
+    const route = useRoute();
 
     const navegar = () => {
         navigation.navigate('Tela2');
@@ -139,7 +142,7 @@ const Tela1 = () => {
                 <Text style={styles.texto}>Editar</Text>
             </TouchableOpacity>
 
-            <FlatList data={cliente} renderItem={({ item }) => (
+            <FlatList keyExtractor={(item, index) => item.id.toString()} data={cliente} renderItem={({ item }) => (
                 <View>
                     <View style={{ flexDirection: 'column' }}>
                         < Text > {item.nome}</Text>
