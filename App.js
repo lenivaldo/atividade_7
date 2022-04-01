@@ -1,9 +1,31 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
 
-import { TextInputMask } from 'react-native-masked-text'
+//import { View, Text, TextInput, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
+//import { TextInputMask } from 'react-native-masked-text';
 
-const App = () => {
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+// ver essa importação
+
+import Tela1 from './src/Tela1';
+import Tela2 from './src/Tela2';
+
+const Stack = createStackNavigator();
+
+function MyApp() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen component={Tela1} name="Tela1"/>
+        <Stack.Screen component={Tela2} name="Tela2"/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+export default MyApp;
+
+/*const App = () => {
 
   const [nome, setNome] = useState('');
   const [endereco, setEndereco] = useState('');
@@ -60,7 +82,7 @@ const App = () => {
         }
         placeholder='DD/MM/YYYY' />
 
-      <Text style={styles.texto}>Alterando envio:</Text>
+      <Text style={styles.texto}>Telefone:</Text>
       <TextInputMask style={styles.entradaTexto}
 
         placeholder='(XX) XXXXX-XXXX'
@@ -109,4 +131,4 @@ const styles = StyleSheet.create({
     width: '90%',
     marginVertical: 10
   }
-});
+});*/
