@@ -27,7 +27,7 @@ const Tela1 = () => {
         axios.get('http://localhost:3000/cliente')
             .then((req) => setCliente(req.data))
             .catch((erro) => console.log(erro));
-    }, [route.params?.user])
+    }, [route.params?.cliente])
 
 
 
